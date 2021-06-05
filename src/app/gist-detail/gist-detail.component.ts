@@ -17,10 +17,10 @@ export class GistDetailComponent implements OnInit {
               private sharedService: SharedService,
               private gistService: GistService) { 
     this.gistdetail = sharedService.gistDetailSharedData;
-    this.getTextFromGist();
   }
 
   ngOnInit(): void {
+    this.getTextFromGist();
   }
 
   public backClicked() : void {

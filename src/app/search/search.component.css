@@ -31,6 +31,7 @@
     display: grid;
     grid-template-columns: auto auto;
     padding: 15px;
+    
 }
 
 .item-redirect {
@@ -38,10 +39,11 @@
 }
 
 .gist-detail {
-    background-color: whitesmoke;
+    background-color: #ECEFF2;
     padding: 5px;
     margin: 20px;
     border-radius: 10%;
+    border: 0.3px solid #D0D0D0;
 }
 
 .gist-detail div {
@@ -54,10 +56,6 @@
     text-align: center;
 }
 
-.gist-detail .item-tag {
-    margin-bottom: 20px;
-}
-
 .gist-detail .item-tag span {
     padding: 4px;
     border-radius: 10%;
@@ -68,17 +66,17 @@
 	flex-wrap: wrap;
 }
 
-.fork-container {
+.fork-item {
     flex-grow: 1;
 	width: 33%;
     text-align: center;
 }
 
-.fork-container .fork-username {
+.fork-item .fork-username {
     font-size: 13px;
 }
 
-.fork-container .fork-avatar {
+.fork-item .fork-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
