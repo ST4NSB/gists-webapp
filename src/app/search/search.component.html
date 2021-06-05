@@ -1,1 +1,18 @@
-<p>search works!</p>
+<p>Write an username to get all his public GISTS !!</p>
+
+
+<label>Search here ...</label>
+<input  class="search-user" 
+        type="search" 
+        [(ngModel)]="searchText"
+        (ngModelChange)="GetListOfGists()">
+
+<div class="content-box">
+    <div class="item">
+        Test
+    </div>
+</div>
+
+
+
+
