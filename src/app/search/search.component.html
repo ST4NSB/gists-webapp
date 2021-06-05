@@ -1,34 +1,48 @@
-<p>Write an username to get all his public GISTS !!</p>
+<h1 class="mainText">Get a list of all the public GISTS !!</h1>
 
-
-<form [formGroup]="searchForm" (ngSubmit)="getListOfGists()">
+<form id="searchForm" [formGroup]="searchForm" (ngSubmit)="getListOfGists()">
     <label>Search here ...</label>
-    <input id="text" type="text" formControlName="text">
-    <button type="submit">Gooo..</button>
+    <input placeholder="Type a github username .." id="text" type="text" formControlName="text">
+    <button type="submit">SEND</button>
 </form>
 
-<div *ngIf="gistList" class="content-box">
-    <p>Showing all results for {{ gistList[0].owner }}</p>
-    <div *ngFor="let gItem of gistList" class="item">
-        <a class="item-redirect" (click)="redirectToGistDetail(gItem)">
-            <div> {{ gItem.filename }} </div>
-            <div> {{ gItem.description }} </div>
-            <div [ngStyle]="{'background-color': getBackgroundColor(gItem.languagetag),
-                             'color': getFontColor(getBackgroundColor(gItem.languagetag))}"> 
-                {{ gItem.languagetag }} 
-            </div>
-            <div *ngIf="gItem.forksList" class="item forks">
-                <div  *ngFor="let forkUser of gItem.forksList">
-                    <div> {{ forkUser.name }}</div>
-                    <img alt="avatar image" src={{forkUser.avatar}} />
+<div *ngIf="!reqErrors; then noErrors else errors"></div>
+
+<ng-template #noErrors>
+    <div *ngIf="gistList" class="content-box">
+        <p class="result-message">Showing all results for {{ gistList[0].owner }}</p>
+        <div class="gist-container">
+            <div *ngFor="let gItem of gistList" class="gist-item">
+                <div class="gist-detail">
+                    <a class="item-redirect" (click)="redirectToGistDetail(gItem)">
+                        <div class="item-title"> {{ gItem.filename }} </div>
+                        <div class="item-description"> {{ gItem.description }} </div>
+                        <div class="item-tag"> 
+                            Tag: <span [ngStyle]="{'background-color': getBackgroundColor(gItem.languagetag),
+                            'color': getFontColor(getBackgroundColor(gItem.languagetag))}">
+                                {{ gItem.languagetag }} 
+                                </span>
+                        </div>
+                        <div *ngIf="gItem.forksList">
+                            Forked by:
+                            <div class="forks">
+                                <div class="fork-container" *ngFor="let forkUser of gItem.forksList">
+                                    <img [attr.title]="forkUser.name" class="fork-avatar" alt="avatar image" src={{forkUser.avatar}} />
+                                    <div class="fork-username"> {{ forkUser.name }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
-        </a>
+        </div>
     </div>
-</div>
+</ng-template>
 
-<div *ngIf="userSearched && (gistList === undefined || gistList === null)" class="content-box-not-found">
-    It seems there are no gists for {{ this.searchForm.get('text')?.value }} 
-    or you excedded maximmum requests for now!
-</div>
+<ng-template #errors>
+    <div class="content-box not-found">
+        It seems there are no gists for this user or you exceeded maximum requests for now!
+    </div>
+</ng-template>
+
 

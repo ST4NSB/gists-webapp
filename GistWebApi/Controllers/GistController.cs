@@ -1,7 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace GistWebApi.Controllers
 {
@@ -44,6 +48,51 @@ namespace GistWebApi.Controllers
         ForksList = forks
       });
 
+
+      responseGistDetailList.Add(new GistDetailModel
+      {
+        Id = "75a8b48e58f80223f4a73c18739446dd",
+        Description = "This is some stuff I made in my free time.",
+        Owner = "kkirsche",
+        Filename = "how-to-oscp-final.md",
+        Languagetag = "Markdown",
+        Rawurl = "https://gist.githubusercontent.com/kkirsche/75a8b48e58f80223f4a73c18739446dd/raw/bb3ce14c14a3d5cfcfc4c08317f4ecda2e9701dd/how-to-oscp-final.md",
+        ForksList = forks
+      });
+
+      responseGistDetailList.Add(new GistDetailModel
+      {
+        Id = "75a8b48e58f80223f4a73c18739446dd",
+        Description = "This is some stuff I made in my free time.",
+        Owner = "kkirsche",
+        Filename = "how-to-oscp-final.md",
+        Languagetag = "Markdown",
+        Rawurl = "https://gist.githubusercontent.com/kkirsche/75a8b48e58f80223f4a73c18739446dd/raw/bb3ce14c14a3d5cfcfc4c08317f4ecda2e9701dd/how-to-oscp-final.md",
+        ForksList = forks
+      });
+
+      responseGistDetailList.Add(new GistDetailModel
+      {
+        Id = "75a8b48e58f80223f4a73c18739446dd",
+        Description = "This is some stuff I made in my free time.",
+        Owner = "kkirsche",
+        Filename = "how-to-oscp-final.md",
+        Languagetag = "Markdown",
+        Rawurl = "https://gist.githubusercontent.com/kkirsche/75a8b48e58f80223f4a73c18739446dd/raw/bb3ce14c14a3d5cfcfc4c08317f4ecda2e9701dd/how-to-oscp-final.md",
+        ForksList = forks
+      });
+
+      responseGistDetailList.Add(new GistDetailModel
+      {
+        Id = "75a8b48e58f80223f4a73c18739446dd",
+        Description = "This is some stuff I made in my free time.",
+        Owner = "kkirsche",
+        Filename = "how-to-oscp-final.md",
+        Languagetag = "Markdown",
+        Rawurl = "https://gist.githubusercontent.com/kkirsche/75a8b48e58f80223f4a73c18739446dd/raw/bb3ce14c14a3d5cfcfc4c08317f4ecda2e9701dd/how-to-oscp-final.md",
+        ForksList = forks
+      });
+
       //var gistDetailUrl = "https://api.github.com/users/" + username + "/gists";
 
       //var resp = GetHttpResponse(gistDetailUrl);
@@ -59,14 +108,6 @@ namespace GistWebApi.Controllers
       //foreach (var json in jsonGists)
       //{
       //  JObject jObjGists = JObject.Parse(json);
-      //  var id = jObjGists["id"].ToString();
-      //  var keys = ((JObject)jObjGists["files"]).Properties().Select(p => p.Name).ToList();
-      //  var filename = keys[0];
-      //  var owner = jObjGists["owner"]["login"].ToString();
-      //  var description = jObjGists["description"].ToString();
-      //  var language = jObjGists["files"][filename]["language"].ToString();
-      //  var rawUrl = jObjGists["files"][filename]["raw_url"].ToString();
-
       //  var forksUrl = jObjGists["forks_url"].ToString();
       //  var respForks = GetHttpResponse(forksUrl);
       //  dynamic jsonRespForks = JsonConvert.DeserializeObject(respForks);
@@ -93,14 +134,17 @@ namespace GistWebApi.Controllers
       //    });
       //  }
 
+      //  var keys = ((JObject)jObjGists["files"]).Properties().Select(p => p.Name).ToList();
+      //  var filename = keys[0];
+
       //  responseGistDetailList.Add(new GistDetailModel
       //  {
-      //    Id = id,
+      //    Id = jObjGists["id"].ToString(),
       //    Filename = filename,
-      //    Owner = owner,
-      //    Description = description,
-      //    Languagetag = language,
-      //    Rawurl = rawUrl,
+      //    Owner = jObjGists["owner"]["login"].ToString(),
+      //    Description = jObjGists["description"].ToString(),
+      //    Languagetag = jObjGists["files"][filename]["language"].ToString(),
+      //    Rawurl = jObjGists["files"][filename]["raw_url"].ToString(),
       //    ForksList = forksDetails
       //  });
       //}

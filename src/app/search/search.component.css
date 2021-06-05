@@ -1,4 +1,89 @@
-.item {
-    margin: 10px;
+.mainText {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+#searchForm label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#searchForm #text {
+    width: 85%;
+}
+
+#searchForm button {
+    margin: 5px 0 0 10px;
+}
+
+.content-box {
+    width: 90%;
+}
+
+.result-message {
+    display: block;
+    margin: 60px 0 10px 0;
+    border-bottom: gray solid 2px;
+    padding-bottom: 4px;
+}
+
+.gist-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 15px;
+}
+
+.item-redirect {
     cursor: pointer;
+}
+
+.gist-detail {
+    background-color: whitesmoke;
+    padding: 5px;
+    margin: 20px;
+    border-radius: 10%;
+}
+
+.gist-detail div {
+    padding-top: 10px;
+}
+
+.gist-detail .item-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.gist-detail .item-tag {
+    margin-bottom: 20px;
+}
+
+.gist-detail .item-tag span {
+    padding: 4px;
+    border-radius: 10%;
+}
+
+.forks {
+    display: flex;
+	flex-wrap: wrap;
+}
+
+.fork-container {
+    flex-grow: 1;
+	width: 33%;
+    text-align: center;
+}
+
+.fork-container .fork-username {
+    font-size: 13px;
+}
+
+.fork-container .fork-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.content-box.not-found {
+    margin: 60px 0 10px 0;
 }

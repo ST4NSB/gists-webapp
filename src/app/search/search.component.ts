@@ -11,12 +11,11 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  public userSearched: boolean;
+  public reqErrors: boolean;
   public gistList: GistDetailModel[];
   public searchForm = this.formBuilder.group({
     text: '',
   });
-  public lastInputName: string;
 
   constructor(private gistService: GistService,
               private readonly router: Router,
@@ -24,17 +23,16 @@ export class SearchComponent implements OnInit {
               private sharedService: SharedService) { }
 
   ngOnInit(): void {
-    this.userSearched = false;
+    this.reqErrors = false;
   }
 
   public getListOfGists() : void {
     let name = this.searchForm.get('text')?.value;
     this.gistService.getListOfGists(name).subscribe(res => {
       this.gistList = res;
-      this.userSearched = true;
-      this.lastInputName = name;
+      this.reqErrors = false;
     }, (errrr) => {
-      this.userSearched = true;
+      this.reqErrors = true;
     });
   }
 

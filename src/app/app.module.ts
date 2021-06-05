@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GistDetailComponent } from './gist-detail/gist-detail.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    GistDetailComponent
+    GistDetailComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
