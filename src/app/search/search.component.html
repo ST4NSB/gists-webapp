@@ -4,8 +4,8 @@
 <label>Search here ...</label>
 <input  class="search-user" 
         type="search" 
-        [(ngModel)]="searchText"
-        (ngModelChange)="GetListOfGists()">
+        [(ngModel)]="searchText">
+<button (click)="GetListOfGists()">Search</button>
 
 <div class="content-box">
     <div class="item">

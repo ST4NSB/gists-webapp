@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GistService } from '../gist.service';
+import { GistDetailModel } from '../models/GistDetailModel';
 
 @Component({
   selector: 'app-search',
@@ -7,15 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
   public searchText: string;
+  public gistList: GistDetailModel[];
 
-  constructor() { }
+  constructor(private gistService: GistService) { }
 
   ngOnInit(): void {
     this.searchText = '';
   }
 
-  GetListOfGists() {
+  public GetListOfGists() {
     console.log(this.searchText);
+
+    this.gistService.getListOfGists(this.searchText).subscribe(res => {
+      this.gistList = res;
+      console.log(this.gistList[1].files[0].filename);
+    });
+
+
   }
 
 
