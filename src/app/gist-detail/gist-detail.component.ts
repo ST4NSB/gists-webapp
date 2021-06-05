@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
 import { GistDetailModel } from '../models/GistDetailModel';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-gist-detail',
@@ -9,13 +10,13 @@ import { GistDetailModel } from '../models/GistDetailModel';
   styleUrls: ['./gist-detail.component.css']
 })
 export class GistDetailComponent implements OnInit {
-  public objectDetail: GistDetailModel | null;
+  public gistdetail: GistDetailModel;
 
-  constructor(private route: ActivatedRoute, private location: Location) { 
-    this.route.queryParams.subscribe(params => {
-      this.objectDetail = params['objectHash'];
-      console.log(this.objectDetail?.filename);
-  });
+  constructor(private route: ActivatedRoute, 
+              private location: Location,
+              private sharedService: SharedService) { 
+    this.gistdetail = sharedService.GistDetailSharedData;
+    console.log("hhhh: " + this.gistdetail.id);
   }
 
   ngOnInit(): void {

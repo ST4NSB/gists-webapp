@@ -4,7 +4,7 @@
 <form [formGroup]="searchForm" (ngSubmit)="getListOfGists()">
     <label>Search here ...</label>
     <input id="text" type="text" formControlName="text">
-    <button type="submit">Search</button>
+    <button type="submit">Gooo..</button>
 </form>
 
 <div *ngIf="gistList" class="content-box">
@@ -14,13 +14,23 @@
             <div> {{ gItem.filename }} </div>
             <div> {{ gItem.description }} </div>
             <div> {{ gItem.languagetag }} </div>
+            <div *ngIf="gItem.forkslist" class="item forks">
+                <div  *ngFor="let forkUser of gItem.forkslist">
+                    <div> {{ forkUser.name }}</div>
+                    <div> {{ forkUser.avatar }}</div>
+                </div>
+            </div>
         </a>
     </div>
 </div>
 
 <div *ngIf="userSearched && (gistList === undefined || gistList === null)" class="content-box-not-found">
-    It seems there are no gists for {{ this.searchForm.get('text')?.value }}
+    It seems there are no gists for {{ this.searchForm.get('text')?.value }} 
+    or you excedded maximmum requests for now!
 </div>
 
+
+
+<a (click)="redirectToGistDetail(null)">test click</a>
 
 

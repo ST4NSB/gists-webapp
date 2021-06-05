@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GistService } from '../gist.service';
 import { GistDetailModel } from '../models/GistDetailModel';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-search',
@@ -18,7 +19,8 @@ export class SearchComponent implements OnInit {
 
   constructor(private gistService: GistService,
               private readonly router: Router,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private sharedService: SharedService) { }
 
   ngOnInit(): void {
     this.userSearched = false;
@@ -33,7 +35,14 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  public redirectToGistDetail(objectHash: GistDetailModel) : void {
-    this.router.navigate(['/GistDetail'], { queryParams: { objectHash: objectHash}});
+  public redirectToGistDetail(hash: GistDetailModel | null) : void {
+
+    hash = new GistDetailModel();
+    hash.id = "adi";
+
+    console.log("from red: " + hash.id);
+
+    this.sharedService.GistDetailSharedData = hash;
+    this.router.navigate(['/GistDetail']);
   }
 }

@@ -6,5 +6,5 @@ export class GistDetailModel {
     public description: string;
     public languagetag: string;
     public rawurl: string;
-    public ForksList: ForkDetailModel[];
+    public forkslist: ForkDetailModel[];
 }
