@@ -7,15 +7,17 @@
         [(ngModel)]="searchText">
 <button (click)="getListOfGists()">Search</button>
 
-<div class="content-box">
-    <div class="item">
-        Test
+<div *ngIf="gistList" class="content-box">
+    <div *ngFor="let item of gistList" class="item">
+        <div> {{ item.filename }} </div>
+        <div> {{ item.description }} </div>
+        <div> {{ item.languagetag }} </div>
     </div>
 </div>
 
 
-<br>
-<a (click)="redirectToGistDetail()">GOTO</a>
+
+<!--<a (click)="redirectToGistDetail()">GOTO</a>-->
 
 
 

@@ -14,8 +14,8 @@ namespace GistWebApi.Controllers
   public class GistController : ControllerBase
   {
     [HttpGet]
-    [Route("getgists/{username}")]
-    public List<GistDetailModel> GetGists(string username)
+    [Route("getcuratedgists/{username}")]
+    public List<GistDetailModel> GetCuratedGists(string username)
     {
       var gistDetailUrl = "https://api.github.com/users/" + username + "/gists";
 
@@ -36,6 +36,7 @@ namespace GistWebApi.Controllers
         var id = jObjGists["id"].ToString();
         var keys = ((JObject)jObjGists["files"]).Properties().Select(p => p.Name).ToList();
         var filename = keys[0];
+        var description = jObjGists["description"].ToString();
         var language = jObjGists["files"][filename]["language"].ToString();
         var rawUrl = jObjGists["files"][filename]["raw_url"].ToString();
 
@@ -69,6 +70,7 @@ namespace GistWebApi.Controllers
         {
           Id = id,
           Filename = filename,
+          Description = description,
           Languagetag = language,
           Rawurl = rawUrl,
           ForksList = forksDetails

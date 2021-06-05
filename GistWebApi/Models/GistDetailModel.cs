@@ -6,6 +6,7 @@ namespace GistWebApi
   {
     public string Id { get; set; }
     public string Filename { get; set; }
+    public string Description { get; set; }
     public string Languagetag { get; set; }
     public string Rawurl { get; set; }
     public IEnumerable<ForkDetailModel> ForksList { get; set; }

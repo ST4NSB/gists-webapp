@@ -23,14 +23,7 @@ export class SearchComponent implements OnInit {
     console.log(this.searchText);
 
     this.gistService.getListOfGists(this.searchText).subscribe(res => {
-      //this.gistList = res;
-
-      const fileNames = Object.keys(res.json());
-      for (let i = 0; i < fileNames.length; i++) {
-        var fileName = fileNames[i];
-        console.log(fileName);
-  }
-
+      this.gistList = res;
     });
   }
 

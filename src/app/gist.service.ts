@@ -7,11 +7,12 @@ import { GistDetailModel } from './models/GistDetailModel';
   providedIn: 'root'
 })
 export class GistService {
+  private link: string = 'https://localhost:44314/gist/getcuratedgists/';
 
   constructor(private httpClient: HttpClient) { }
 
-  public getListOfGists(username: string) : Observable<Response>{
-    return this.httpClient.get<Response>('https://api.github.com/users/' + username + '/gists');
+  public getListOfGists(username: string) : Observable<GistDetailModel[]>{
+    return this.httpClient.get<GistDetailModel[]>(this.link + username);
   }
 
 
