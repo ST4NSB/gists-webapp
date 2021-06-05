@@ -14,10 +14,10 @@
             <div> {{ gItem.filename }} </div>
             <div> {{ gItem.description }} </div>
             <div> {{ gItem.languagetag }} </div>
-            <div *ngIf="gItem.forkslist" class="item forks">
-                <div  *ngFor="let forkUser of gItem.forkslist">
+            <div *ngIf="gItem.forksList" class="item forks">
+                <div  *ngFor="let forkUser of gItem.forksList">
                     <div> {{ forkUser.name }}</div>
-                    <img src={{ forkUser.avatar }} alt="avatar image">
+                    <img alt="avatar image" src={{forkUser.avatar}} />
                 </div>
             </div>
         </a>
@@ -28,9 +28,4 @@
     It seems there are no gists for {{ this.searchForm.get('text')?.value }} 
     or you excedded maximmum requests for now!
 </div>
-
-
-
-<a (click)="redirectToGistDetail(null)">test click</a>
-
 

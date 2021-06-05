@@ -38,19 +38,8 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  public redirectToGistDetail(hash: GistDetailModel | null) : void {
-
-    hash = new GistDetailModel();
-    hash.filename = "test.js";
-    hash.description = "some desc";
-    hash.languagetag = "javascript";
-    hash.rawurl = "https://gist.githubusercontent.com/ST4NSB/8009d9b6a2805b73c64362726dae17b1/raw/182063a9c6c5b23f4c4c94ce33c626838aadcec3/test.js";
-
-    console.log("from red: " + hash.id);
-
-    this.sharedService.gistDetailSharedData = hash;
-    //this.sharedService.userSearched = this.lastInputName; // DECOMMENT THIS FAST
-    this.sharedService.userSearched = "ST4NSB";
+  public redirectToGistDetail(item: GistDetailModel) : void {
+    this.sharedService.gistDetailSharedData = item;
     this.router.navigate(['/GistDetail']);
   }
 }

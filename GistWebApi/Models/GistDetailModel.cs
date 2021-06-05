@@ -5,6 +5,7 @@ namespace GistWebApi
   public class GistDetailModel
   {
     public string Id { get; set; }
+    public string Owner { get; set; }
     public string Filename { get; set; }
     public string Description { get; set; }
     public string Languagetag { get; set; }

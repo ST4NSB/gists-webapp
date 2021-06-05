@@ -11,15 +11,12 @@ import { GistService } from '../gist.service';
 })
 export class GistDetailComponent implements OnInit {
   public gistdetail: GistDetailModel;
-  public userName: string;
   public textLines: string[];
 
   constructor(private location: Location,
               private sharedService: SharedService,
               private gistService: GistService) { 
     this.gistdetail = sharedService.gistDetailSharedData;
-    this.userName = sharedService.userSearched;
-    console.log(this.userName);
     this.getTextFromGist();
   }
 
@@ -33,7 +30,7 @@ export class GistDetailComponent implements OnInit {
   private getTextFromGist(): void {
     this.gistService.getTextFromGistUrl(this.gistdetail.rawurl)
       .subscribe(res => {
-        this.textLines = res.split(/\n/g); // split so we have all lines at "\n"
+        this.textLines = res.split(/\n/g); // split at "\n" so we have all lines as List
     });
   }
 }
