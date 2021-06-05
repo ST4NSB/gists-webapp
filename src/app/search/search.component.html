@@ -8,12 +8,15 @@
 </form>
 
 <div *ngIf="gistList" class="content-box">
-    <p>Showing all results for {{ this.searchForm.get('text')?.value }}</p>
+    <p>Showing all results for {{ gistList[0].owner }}</p>
     <div *ngFor="let gItem of gistList" class="item">
         <a class="item-redirect" (click)="redirectToGistDetail(gItem)">
             <div> {{ gItem.filename }} </div>
             <div> {{ gItem.description }} </div>
-            <div> {{ gItem.languagetag }} </div>
+            <div [ngStyle]="{'background-color': getBackgroundColor(gItem.languagetag),
+                             'color': getFontColor(getBackgroundColor(gItem.languagetag))}"> 
+                {{ gItem.languagetag }} 
+            </div>
             <div *ngIf="gItem.forksList" class="item forks">
                 <div  *ngFor="let forkUser of gItem.forksList">
                     <div> {{ forkUser.name }}</div>

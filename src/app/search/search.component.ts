@@ -42,4 +42,34 @@ export class SearchComponent implements OnInit {
     this.sharedService.gistDetailSharedData = item;
     this.router.navigate(['/GistDetail']);
   }
+
+  // this returns a hash code for a number (example used for programming language background-color tag) 
+  public getBackgroundColor(str: string) : string{
+    const value = this.hashCode(str);
+    var c = (value & 0x00FFFFFF).toString(16).toUpperCase();
+
+    return "#" + "00000".substring(0, 6 - c.length) + c;
+  }
+
+  // this sets quite the opposite (look-good opposite) of the font color for the tag,
+  // set with background-color by the getBackgroundColor() method from above
+  public getFontColor(bkColor: string) : string {
+    let color = bkColor.substring(1);
+
+    // I assume that this will look good for all cases :D
+    if (color >= 'AAAAAA') {
+      return "#000000";
+    }
+    else {
+      return "#ffffff"; 
+    }
+  }
+
+  private hashCode(str: string) : number {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+       hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return hash;
+  } 
 }
