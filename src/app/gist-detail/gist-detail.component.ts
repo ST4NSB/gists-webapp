@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
 import { GistDetailModel } from '../models/GistDetailModel';
 import { SharedService } from '../shared.service';
+import { GistService } from '../gist.service';
 
 @Component({
   selector: 'app-gist-detail',
@@ -12,11 +12,11 @@ import { SharedService } from '../shared.service';
 export class GistDetailComponent implements OnInit {
   public gistdetail: GistDetailModel;
 
-  constructor(private route: ActivatedRoute, 
-              private location: Location,
-              private sharedService: SharedService) { 
+  constructor(private location: Location,
+              private sharedService: SharedService,
+              private gistService: GistService) { 
     this.gistdetail = sharedService.GistDetailSharedData;
-    console.log("hhhh: " + this.gistdetail.id);
+    this.getTextFromGist();
   }
 
   ngOnInit(): void {
@@ -24,6 +24,12 @@ export class GistDetailComponent implements OnInit {
 
   public backClicked() : void {
     this.location.back();
+  }
+
+  private getTextFromGist(): void {
+    //this.gistService.getTextFromGistUrl(this.gistdetail.rawurl);
+    this.gistService.getTextFromGistUrl("https://gist.githubusercontent.com/ST4NSB/8009d9b6a2805b73c64362726dae17b1/raw/182063a9c6c5b23f4c4c94ce33c626838aadcec3/test.js")
+      .subscribe(res => console.log(res));
   }
 
 }
