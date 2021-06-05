@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
+import { GistDetailModel } from '../models/GistDetailModel';
 
 @Component({
   selector: 'app-gist-detail',
@@ -8,19 +9,19 @@ import {Location} from '@angular/common';
   styleUrls: ['./gist-detail.component.css']
 })
 export class GistDetailComponent implements OnInit {
-  public link: string | null;
+  public objectDetail: GistDetailModel | null;
 
   constructor(private route: ActivatedRoute, private location: Location) { 
     this.route.queryParams.subscribe(params => {
-      this.link = params['link'];
-      
+      this.objectDetail = params['objectHash'];
+      console.log(this.objectDetail?.filename);
   });
   }
 
   ngOnInit(): void {
   }
 
-  public backClicked() {
+  public backClicked() : void {
     this.location.back();
   }
 

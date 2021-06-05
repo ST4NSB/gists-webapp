@@ -1,15 +1,16 @@
 <p>Write an username to get all his public GISTS !!</p>
 
 
-<label>Search here ...</label>
-<input  class="search-user" 
-        type="search" 
-        [(ngModel)]="searchText">
-<button (click)="getListOfGists()">Search</button>
+<form [formGroup]="searchForm" (ngSubmit)="getListOfGists()">
+    <label>Search here ...</label>
+    <input id="text" type="text" formControlName="text">
+    <button type="submit">Search</button>
+</form>
 
 <div *ngIf="gistList" class="content-box">
+    <p>Showing all results for {{ this.searchForm.get('text')?.value }}</p>
     <div *ngFor="let gItem of gistList" class="item">
-        <a class="item-redirect" (click)="redirectToGistDetail(gItem.rawurl)">
+        <a class="item-redirect" (click)="redirectToGistDetail(gItem)">
             <div> {{ gItem.filename }} </div>
             <div> {{ gItem.description }} </div>
             <div> {{ gItem.languagetag }} </div>
@@ -17,6 +18,9 @@
     </div>
 </div>
 
+<div *ngIf="userSearched && (gistList === undefined || gistList === null)" class="content-box-not-found">
+    It seems there are no gists for {{ this.searchForm.get('text')?.value }}
+</div>
 
 
 
