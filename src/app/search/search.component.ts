@@ -27,9 +27,8 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  public redirectToGistDetail(linkParam: string = "what is up") {
-    this.router.navigate(['/GistDetail'], { queryParams: { link: "https://gist.githubusercontent.com/ST4NSB/8009d9b6a2805b73c64362726dae17b1/raw/182063a9c6c5b23f4c4c94ce33c626838aadcec3/test.js"} });
+  public redirectToGistDetail(linkParam: string) {
+    console.log(linkParam);
+    this.router.navigate(['/GistDetail'], { queryParams: { link: linkParam}});
   }
-
-
 }

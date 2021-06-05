@@ -50,7 +50,7 @@ namespace GistWebApi.Controllers
           string value = Convert.ToString(item);
           jsonForks.Add(value);
         }
-        jsonForks.Reverse(); // they are sorted by date ASC, so reverting will sort them by last date
+        jsonForks.Reverse(); // they are sorted by date ASC, so reverting will sort them DESC by date
 
         var forksDetails = new List<ForkDetailModel>();
         foreach(var fork in jsonForks.Take(3)) // we take only 3 user who forked

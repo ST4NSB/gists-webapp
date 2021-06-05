@@ -8,16 +8,14 @@
 <button (click)="getListOfGists()">Search</button>
 
 <div *ngIf="gistList" class="content-box">
-    <div *ngFor="let item of gistList" class="item">
-        <div> {{ item.filename }} </div>
-        <div> {{ item.description }} </div>
-        <div> {{ item.languagetag }} </div>
+    <div *ngFor="let gItem of gistList" class="item">
+        <a class="item-redirect" (click)="redirectToGistDetail(gItem.rawurl)">
+            <div> {{ gItem.filename }} </div>
+            <div> {{ gItem.description }} </div>
+            <div> {{ gItem.languagetag }} </div>
+        </a>
     </div>
 </div>
-
-
-
-<!--<a (click)="redirectToGistDetail()">GOTO</a>-->
 
 
 
