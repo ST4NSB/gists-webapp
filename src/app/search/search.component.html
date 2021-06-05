@@ -5,13 +5,17 @@
 <input  class="search-user" 
         type="search" 
         [(ngModel)]="searchText">
-<button (click)="GetListOfGists()">Search</button>
+<button (click)="getListOfGists()">Search</button>
 
 <div class="content-box">
     <div class="item">
         Test
     </div>
 </div>
+
+
+<br>
+<a (click)="redirectToGistDetail()">GOTO</a>
 
 
 

@@ -10,8 +10,8 @@ export class GistService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getListOfGists(username: string) : Observable<GistDetailModel[]>{
-    return this.httpClient.get<GistDetailModel[]>('https://api.github.com/users/' + username + '/gists');
+  public getListOfGists(username: string) : Observable<Response>{
+    return this.httpClient.get<Response>('https://api.github.com/users/' + username + '/gists');
   }
 
 
