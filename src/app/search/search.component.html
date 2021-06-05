@@ -17,7 +17,7 @@
             <div *ngIf="gItem.forkslist" class="item forks">
                 <div  *ngFor="let forkUser of gItem.forkslist">
                     <div> {{ forkUser.name }}</div>
-                    <div> {{ forkUser.avatar }}</div>
+                    <img src={{ forkUser.avatar }} alt="avatar image">
                 </div>
             </div>
         </a>

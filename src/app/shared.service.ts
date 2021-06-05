@@ -5,7 +5,8 @@ import { GistDetailModel } from './models/GistDetailModel';
   providedIn: 'root'
 })
 export class SharedService {
-  public GistDetailSharedData: GistDetailModel;
+  public gistDetailSharedData: GistDetailModel;
+  public userSearched: string;
   
   constructor() { }
 }

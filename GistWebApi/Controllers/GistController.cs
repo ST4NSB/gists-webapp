@@ -40,7 +40,7 @@ namespace GistWebApi.Controllers
         var language = jObjGists["files"][filename]["language"].ToString();
         var rawUrl = jObjGists["files"][filename]["raw_url"].ToString();
 
-        var forksUrl = "https://api.github.com/gists/" + id + "/forks";
+        var forksUrl = jObjGists["forks_url"].ToString();
         var respForks = GetHttpResponse(forksUrl);
         dynamic jsonRespForks = JsonConvert.DeserializeObject(respForks);
 

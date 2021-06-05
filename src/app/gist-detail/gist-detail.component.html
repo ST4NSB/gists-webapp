@@ -1,5 +1,11 @@
 <button (click)="backClicked()" class="back-bttn">Go back</button>
 
 
+<div class="name">{{ userName }}</div>
+<div class="filename">{{ gistdetail?.filename }}</div>
+<div class="language">{{ gistdetail?.languagetag }}</div>
 
-<div>Hi {{ gistdetail?.id }}!</div>
+
+<div *ngFor="let line of textLines; let i = index" [attr.data-index]="i" class="codebox">
+    <div class="item"><span class="line-number">{{ i + 1}}</span> {{ line }}</div>
+</div>
