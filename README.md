@@ -33,7 +33,7 @@ The search component will call the gistService to get a curated list of gists gi
 
 The gist-detail component will make a http request to get all the text from the file which the user selected previously. The response from the api will be in text/plain format so we should change the http req headers to reflect that. After we get the whole text as a string, we split the string at the EOL character (in our case '\n'), by doing this we now have an array of strings for each line with which we can show every line in a div and also indexing each line to get a sense we are looking at real code (see images below).
 
-For the layout, I used both flex & grid but this is an area which can be further improved.
+For the layout, I used both flex, grid & table but this is an area which can be further improved.
 
 ## Improvements
 
