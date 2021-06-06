@@ -9,7 +9,7 @@ This is an application that gets all of the public gists for a github user (incl
 4. type **ng serve**
 5. Now application will run on your localhost (will run on *http://localhost:4200/*)
 
-! Keep in mind that you can only make 60 request per hour, and generally the asp web api will make at least 1, and for each result will make +1.
+**! Keep in mind that you can only make 60 request per hour, and generally the asp web api will make at least 1, and for each result file will make another one.**
 
 ## Functionality
 I've used the ASP web api to make a get request and process the response because it's easier to work with json files using libraries in c#, instead of processing it on frontend (angular). Also now angular can have a model class which will just get the curated list of gists coming from the asp web api (angular model classes will be exactly like the C# web api model classes).
@@ -24,7 +24,7 @@ To get only the latest 3 forkers, we make a request to get all forks, then we re
 
 In the end we return a GistDetailModel (the same model will be in angular too) which is basically a curated model of a gist list request for an user.
 
-The drawback of using this web api is the response time (mainly with few seconds).
+The drawback of using this web api is the response time (few seconds more wait time).
 
 - ### Angular project description
 The angular project uses 4 components (app-main, search, gistdetail, errorpage component), 2 services(shared service which communicates between components and the gist service which makes the http requests to my asp web api & gist file content) and 1 routing between components. 
