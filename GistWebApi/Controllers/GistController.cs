@@ -81,21 +81,28 @@ namespace GistWebApi.Controllers
 
     private string GetHttpResponse(string url)
     {
-      HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
-      request.Method = "GET";
-      request.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; " + "Windows NT 5.2; .NET CLR 1.0.3705;)";
-      string respString = string.Empty;
-
-      using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+      try
       {
-        Stream dataStream = response.GetResponseStream();
-        StreamReader reader = new StreamReader(dataStream);
-        respString = reader.ReadToEnd();
-        reader.Close();
-        dataStream.Close();
-      }
+        HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
+        request.Method = "GET";
+        request.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; " + "Windows NT 5.2; .NET CLR 1.0.3705;)";
+        string respString = string.Empty;
 
-      return respString;
+        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+        {
+          Stream dataStream = response.GetResponseStream();
+          StreamReader reader = new StreamReader(dataStream);
+          respString = reader.ReadToEnd();
+          reader.Close();
+          dataStream.Close();
+        }
+
+        return respString;
+      }
+      catch(WebException)
+      {
+        return "[]"; // return an empty json array so it doesn't stop executing when request limit exceeded!
+      }
     }
   }
 }
