@@ -22,8 +22,12 @@ To get only the latest 3 forkers, we make a request to get all forks, then we re
 
 In the end we return a GistDetailModel (the same model will be in angular too) which is basically a curated model of a gist list request for an user.
 
+The drawback of using this web api is the response time (mainly with few seconds).
+
 - ### Angular project description
-aslkdjdaslj
+The angular project uses 4 components (app-main, search, gistdetail, errorpage component), 2 services(shared service which transfer the data between components and the gist service which makes http requests to my asp web api & gist file content) and 1 routing between components. 
+
+The search component will call the gistService to get a curated list of gists given by my asp web api, the response will be wrapped in the GistDetailModel class and showed on results div if there are no errors (reqErrors variable is false). This component also has a method which will redirect to the gistdetail component if you clicked on a gist info div (the redirect will not send a query parameter with the model and instead it will use the sharedService to communicate between components). I've choosen to use a sharedService because I didn't want to send data in the url (sending for example the file url in a GET parameter in url). The search component also has some methods which will map the programming language to a HEX color by using some hash logic, so by using this method it's easier to view the programming language tags.
 
 ## Improvements
 
