@@ -17,7 +17,7 @@
 }
 
 .content-box {
-    width: 90%;
+    width: 100%;
 }
 
 .result-message {
@@ -31,7 +31,6 @@
     display: grid;
     grid-template-columns: auto auto;
     padding: 15px;
-    
 }
 
 .item-redirect {
@@ -54,6 +53,10 @@
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+}
+
+.gist-detail .item-tag {
+    padding-bottom: 15px;
 }
 
 .gist-detail .item-tag span {

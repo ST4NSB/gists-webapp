@@ -10,7 +10,15 @@
 
 <ng-template #noErrors>
     <div *ngIf="gistList" class="content-box">
-        <p class="result-message">Showing all results for {{ gistList[0].owner }}</p>
+
+        <div *ngIf="gistList.length !== 0; then paragraphResponse else paragraphForm"></div>
+        <ng-template #paragraphResponse>
+            <p class="result-message">Showing all results for {{ gistList[0].owner }}</p>
+        </ng-template>
+        <ng-template #paragraphForm>
+            <p class="result-message">Showing all results for {{ searchForm.get('text')?.value }}</p>
+        </ng-template>
+
         <div class="gist-container">
             <div *ngFor="let gItem of gistList" class="gist-item">
                 <div class="gist-detail">
@@ -20,10 +28,10 @@
                         <div class="item-tag"> 
                             Tag: <span [ngStyle]="{'background-color': getBackgroundColor(gItem.languagetag),
                             'color': getFontColor(getBackgroundColor(gItem.languagetag))}">
-                                {{ gItem.languagetag }} 
+                                {{ gItem.languagetag ? gItem.languagetag : 'Text' }} 
                                 </span>
                         </div>
-                        <div *ngIf="gItem.forksList">
+                        <div *ngIf="gItem.forksList.length !== 0">
                             Forked by:
                             <div class="forks">
                                 <div class="fork-item" *ngFor="let forkUser of gItem.forksList">

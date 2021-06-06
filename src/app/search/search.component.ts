@@ -55,7 +55,7 @@ export class SearchComponent implements OnInit {
     let color = bkColor.substring(1);
 
     // I assume that this will look good for all cases :D
-    if (color >= 'AAAAAA') {
+    if (color >= 'F8F8F8') {
       return "#000000";
     }
     else {

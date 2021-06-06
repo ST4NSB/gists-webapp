@@ -1,14 +1,15 @@
 <button (click)="backClicked()" class="back-bttn">Go back</button>
 
+<div class="content-main">
+    <div class="main-info">
+        <div class="name">User: <span>{{ gistdetail?.owner }}</span></div>
+        <div class="filename">Gist: <span>{{ gistdetail?.filename }}</span></div>
+        <div class="language">Language: <span>{{ gistdetail?.languagetag ? gistdetail?.languagetag : 'Text' }}</span></div>
+    </div>
 
-<div class="main-info">
-    <div class="name">{{ gistdetail?.owner }}</div>
-    <div class="filename">{{ gistdetail?.filename }}</div>
-    <div class="language">{{ gistdetail?.languagetag }}</div>
-</div>
-
-<div id="codebox">
-    <div class="box-item" *ngFor="let line of textLines; let i = index" [attr.data-index]="i">
-        <div class="item"><span class="line-number">{{ i + 1}}</span> {{ line }}</div>
+    <div id="codebox">
+        <div class="box-item" *ngFor="let line of textLines; let i = index" [attr.data-index]="i">
+            <div class="item"><span class="line-number">{{ i + 1}}</span> {{ line }}</div>
+        </div>
     </div>
 </div>

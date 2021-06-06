@@ -1,5 +1,30 @@
 .back-bttn {
     margin: 20px 0;
+    display: inline;
+}
+
+.content-main {
+    width: 95rem;
+}
+@media (min-width: 1149px) and (max-width: 1540px) {
+    .content-main {
+        width: 70rem;
+    }
+}
+@media (min-width: 820px) and (max-width: 1148px) {
+   .content-main {
+        width: 50rem;
+    }
+}
+@media (min-width: 500px) and (max-width: 819px) {
+    .content-main {
+        width: 30rem;
+    }
+}
+@media (min-width: 0px) and (max-width: 499px) {
+    .content-main {
+        width: 24rem;
+    }
 }
 
 .main-info {
@@ -15,9 +40,12 @@
     flex-grow: 1;
 	width: 10%;
     text-align: center;
-    font-weight: bold;
     font-size: 14px;
     color: #0366D6;
+}
+
+.main-info div > span {
+    font-weight: bold;
 }
 
 #codebox {
@@ -29,7 +57,7 @@
 }
 
 .box-item:nth-child(even) {
-    background-color: #FbFbFb;
+    background-color: #FbFbFc;
 }
 
 #codebox .line-number {

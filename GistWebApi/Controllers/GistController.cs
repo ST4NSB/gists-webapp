@@ -19,135 +19,61 @@ namespace GistWebApi.Controllers
     {
       var responseGistDetailList = new List<GistDetailModel>();
 
-      var forks = new List<ForkDetailModel>();
-      forks.Add(new ForkDetailModel
+      var gistDetailUrl = "https://api.github.com/users/" + username + "/gists";
+
+      var resp = GetHttpResponse(gistDetailUrl);
+      dynamic jsonResp = JsonConvert.DeserializeObject(resp);
+
+      var jsonGists = new List<string>();
+      foreach (var item in jsonResp)
       {
-        Name = "t3xtm0d3",
-        Avatar = "https://avatars.githubusercontent.com/u/6636282?v=4"
-      });
-      forks.Add(new ForkDetailModel
+        string value = Convert.ToString(item);
+        jsonGists.Add(value);
+      }
+
+      foreach (var json in jsonGists)
       {
-        Name = "kaymarius",
-        Avatar = "https://avatars.githubusercontent.com/u/22754902?v=4"
-      });
-      forks.Add(new ForkDetailModel
-      {
-        Name = "mahadihanif",
-        Avatar = "https://avatars.githubusercontent.com/u/32836778?v=4"
-      });
+        JObject jObjGists = JObject.Parse(json);
+        var forksUrl = jObjGists["forks_url"].ToString();
+        var respForks = GetHttpResponse(forksUrl);
+        dynamic jsonRespForks = JsonConvert.DeserializeObject(respForks);
 
+        var jsonForks = new List<string>();
+        foreach (var item in jsonRespForks)
+        {
+          string value = Convert.ToString(item);
+          jsonForks.Add(value);
+        }
+        jsonForks.Reverse(); // they are sorted by date ASC, so reverting will sort them DESC by date
 
-      responseGistDetailList.Add(new GistDetailModel
-      {
-        Id = "75a8b48e58f80223f4a73c18739446dd",
-        Description = "This is some stuff I made in my free time.",
-        Owner = "kkirsche",
-        Filename = "how-to-oscp-final.md",
-        Languagetag = "Markdown",
-        Rawurl = "https://gist.githubusercontent.com/kkirsche/75a8b48e58f80223f4a73c18739446dd/raw/bb3ce14c14a3d5cfcfc4c08317f4ecda2e9701dd/how-to-oscp-final.md",
-        ForksList = forks
-      });
+        var forksDetails = new List<ForkDetailModel>();
+        foreach (var fork in jsonForks.Take(3)) // we take only 3 user who forked
+        {
+          JObject jObjFork = JObject.Parse(fork);
+          var userNameFork = jObjFork["owner"]["login"].ToString();
+          var avatarFork = jObjFork["owner"]["avatar_url"].ToString();
 
+          forksDetails.Add(new ForkDetailModel
+          {
+            Name = userNameFork,
+            Avatar = avatarFork
+          });
+        }
 
-      responseGistDetailList.Add(new GistDetailModel
-      {
-        Id = "75a8b48e58f80223f4a73c18739446dd",
-        Description = "This is some stuff I made in my free time.",
-        Owner = "kkirsche",
-        Filename = "how-to-oscp-final.md",
-        Languagetag = "Markdown",
-        Rawurl = "https://gist.githubusercontent.com/kkirsche/75a8b48e58f80223f4a73c18739446dd/raw/bb3ce14c14a3d5cfcfc4c08317f4ecda2e9701dd/how-to-oscp-final.md",
-        ForksList = forks
-      });
+        var keys = ((JObject)jObjGists["files"]).Properties().Select(p => p.Name).ToList();
+        var filename = keys[0];
 
-      responseGistDetailList.Add(new GistDetailModel
-      {
-        Id = "75a8b48e58f80223f4a73c18739446dd",
-        Description = "This is some stuff I made in my free time.",
-        Owner = "kkirsche",
-        Filename = "how-to-oscp-final.md",
-        Languagetag = "Markdown",
-        Rawurl = "https://gist.githubusercontent.com/kkirsche/75a8b48e58f80223f4a73c18739446dd/raw/bb3ce14c14a3d5cfcfc4c08317f4ecda2e9701dd/how-to-oscp-final.md",
-        ForksList = forks
-      });
-
-      responseGistDetailList.Add(new GistDetailModel
-      {
-        Id = "75a8b48e58f80223f4a73c18739446dd",
-        Description = "This is some stuff I made in my free time.",
-        Owner = "kkirsche",
-        Filename = "how-to-oscp-final.md",
-        Languagetag = "Markdown",
-        Rawurl = "https://gist.githubusercontent.com/kkirsche/75a8b48e58f80223f4a73c18739446dd/raw/bb3ce14c14a3d5cfcfc4c08317f4ecda2e9701dd/how-to-oscp-final.md",
-        ForksList = forks
-      });
-
-      responseGistDetailList.Add(new GistDetailModel
-      {
-        Id = "75a8b48e58f80223f4a73c18739446dd",
-        Description = "This is some stuff I made in my free time.",
-        Owner = "kkirsche",
-        Filename = "how-to-oscp-final.md",
-        Languagetag = "Markdown",
-        Rawurl = "https://gist.githubusercontent.com/kkirsche/75a8b48e58f80223f4a73c18739446dd/raw/bb3ce14c14a3d5cfcfc4c08317f4ecda2e9701dd/how-to-oscp-final.md",
-        ForksList = forks
-      });
-
-      //var gistDetailUrl = "https://api.github.com/users/" + username + "/gists";
-
-      //var resp = GetHttpResponse(gistDetailUrl);
-      //dynamic jsonResp = JsonConvert.DeserializeObject(resp);
-
-      //var jsonGists = new List<string>();
-      //foreach (var item in jsonResp)
-      //{
-      //  string value = Convert.ToString(item);
-      //  jsonGists.Add(value);
-      //}
-
-      //foreach (var json in jsonGists)
-      //{
-      //  JObject jObjGists = JObject.Parse(json);
-      //  var forksUrl = jObjGists["forks_url"].ToString();
-      //  var respForks = GetHttpResponse(forksUrl);
-      //  dynamic jsonRespForks = JsonConvert.DeserializeObject(respForks);
-
-      //  var jsonForks = new List<string>();
-      //  foreach (var item in jsonRespForks)
-      //  {
-      //    string value = Convert.ToString(item);
-      //    jsonForks.Add(value);
-      //  }
-      //  jsonForks.Reverse(); // they are sorted by date ASC, so reverting will sort them DESC by date
-
-      //  var forksDetails = new List<ForkDetailModel>();
-      //  foreach (var fork in jsonForks.Take(3)) // we take only 3 user who forked
-      //  {
-      //    JObject jObjFork = JObject.Parse(fork);
-      //    var userNameFork = jObjFork["owner"]["login"].ToString();
-      //    var avatarFork = jObjFork["owner"]["avatar_url"].ToString();
-
-      //    forksDetails.Add(new ForkDetailModel
-      //    {
-      //      Name = userNameFork,
-      //      Avatar = avatarFork
-      //    });
-      //  }
-
-      //  var keys = ((JObject)jObjGists["files"]).Properties().Select(p => p.Name).ToList();
-      //  var filename = keys[0];
-
-      //  responseGistDetailList.Add(new GistDetailModel
-      //  {
-      //    Id = jObjGists["id"].ToString(),
-      //    Filename = filename,
-      //    Owner = jObjGists["owner"]["login"].ToString(),
-      //    Description = jObjGists["description"].ToString(),
-      //    Languagetag = jObjGists["files"][filename]["language"].ToString(),
-      //    Rawurl = jObjGists["files"][filename]["raw_url"].ToString(),
-      //    ForksList = forksDetails
-      //  });
-      //}
+        responseGistDetailList.Add(new GistDetailModel
+        {
+          Id = jObjGists["id"].ToString(),
+          Filename = filename,
+          Owner = jObjGists["owner"]["login"].ToString(),
+          Description = jObjGists["description"].ToString(),
+          Languagetag = jObjGists["files"][filename]["language"].ToString(),
+          Rawurl = jObjGists["files"][filename]["raw_url"].ToString(),
+          ForksList = forksDetails
+        });
+      }
 
       return responseGistDetailList;
     }
