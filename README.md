@@ -9,6 +9,8 @@ This is an application that gets all of the public gists for a github user (incl
 4. type **ng serve**
 5. Now application will run on your localhost (will run on *http://localhost:4200/*)
 
+! Keep in mind that you can only make 60 request per hour, and generally the asp web api will make at least 1, and for each result will make +1.
+
 ## Functionality
 I've used the ASP web api to make a get request and process the response because it's easier to work with json files using libraries in c#, instead of processing it on frontend (angular). Also now angular can have a model class which will just get the curated list of gists coming from the asp web api (angular model classes will be exactly like the C# web api model classes).
 
@@ -57,7 +59,11 @@ This is how it looks on github
 <br/><br/><br/>
 Searching for an user which has a lot of gists (and also forked gists by other users)  
 ... yes, there is still room for improvement to the layout here
-![image](https://user-images.githubusercontent.com/38291834/120917254-dc75fe80-c6b6-11eb-955b-ae028bf2d395.png)
+![image](https://user-images.githubusercontent.com/38291834/120921009-4a77f100-c6ca-11eb-8424-6b9b28b7f1fe.png)
+
++ another one for different user
+![image](https://user-images.githubusercontent.com/38291834/120921079-a6db1080-c6ca-11eb-9cbc-39d8e101bdc5.png)
+
 
 .. And this is how a big file looks like (an ascii shell encoder done in python)
 ![image](https://user-images.githubusercontent.com/38291834/120918995-fff17700-c6bf-11eb-8e41-fe68c0afa8d3.png)
