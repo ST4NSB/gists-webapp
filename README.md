@@ -25,9 +25,13 @@ In the end we return a GistDetailModel (the same model will be in angular too) w
 The drawback of using this web api is the response time (mainly with few seconds).
 
 - ### Angular project description
-The angular project uses 4 components (app-main, search, gistdetail, errorpage component), 2 services(shared service which transfer the data between components and the gist service which makes http requests to my asp web api & gist file content) and 1 routing between components. 
+The angular project uses 4 components (app-main, search, gistdetail, errorpage component), 2 services(shared service which communicates between components and the gist service which makes the http requests to my asp web api & gist file content) and 1 routing between components. 
 
 The search component will call the gistService to get a curated list of gists given by my asp web api, the response will be wrapped in the GistDetailModel class and showed on results div if there are no errors (reqErrors variable is false). This component also has a method which will redirect to the gistdetail component if you clicked on a gist info div (the redirect will not send a query parameter with the model and instead it will use the sharedService to communicate between components). I've choosen to use a sharedService because I didn't want to send data in the url (sending for example the file url in a GET parameter in url). The search component also has some methods which will map the programming language to a HEX color by using some hash logic, so by using this method it's easier to view the programming language tags.
+
+The gist-detail component will make a http request to get all the text from the file which the user selected previously. The response from the api will be in text/plain format so we should change the http req headers to reflect that. After we get the whole text as a string, we split the string at the EOL character (in our case '\n'), by doing this we now have an array of strings for each line with which we can show every line in a div and also indexing each line to get a sense we are looking at real code (see images below).
+
+For the layout, I used both flex & grid but this is an area which can be further improved.
 
 ## Improvements
 
